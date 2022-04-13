@@ -1,0 +1,26 @@
+{
+  "name": "lista-personagens",
+  "version": "0.0.1",
+  "description": "Lista de personagens usando Node.Js e Express para criar rotas de modificação.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index",
+    "dev": "nodemon index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JVictor1604/lista-personagens.git"
+  },
+  "author": "JVictor",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JVictor1604/lista-personagens/issues"
+  },
+  "homepage": "https://github.com/JVictor1604/lista-personagens#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.3",
+    "nodemon": "^2.0.15"
+  }
+}
