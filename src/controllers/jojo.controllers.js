@@ -6,41 +6,64 @@ const findJojo = (req, res) => {
 };
 
 const findJojoById = (req, res) => {
+
+  if (!req.params.id) {
+    return res.status(404).send({ message: "Paleta não encontrada!" })
+  }
+
   res.send(JojosService.findJojoByIdService(req.params.id));
 };
 
-const addJojo = (req,res) => {
+const addJojo = (req, res) => {
+  const personagem = req.body;
 
-    
-    let retorno =  JojosService.addJojoService(req.body) ;
+  if (
+    !personagem.nome ||
+    !personagem.descricao ||
+    !personagem.imagem ||
+    !personagem.stand ||
+    !personagem.status ||
+    !personagem.altura ||
+    !personagem.peso ||
+    !personagem.parte
+  ) {
+    return res.send(
+      res.status(400).send({
+        mensagem:
+          'Você não preencheu todos os dados para adicionar uma nova paleta ao cardápio!',
+      }),
+    );
+  }
 
-    if(retorno == "ok") {
+  let retorno = JojosService.addJojoService(req.body);
 
-    res.send("Personagem cadastrado com sucesso")} else {res.send('Houve um erro')}
-
+  if (retorno == 'ok') {
+    res.send('Personagem cadastrado com sucesso');
+  } else {
+    res.send('Houve um erro');
+  }
 };
 
 const updateJojosController = (req, res) => {
 
-    
-    const updatedJojo = JojosService.uptadeJojoService(+req.params.id, req.body);
-    res.send(updatedJojo);
+  if (!req.params.id) {
+    return res.status(404).send({ message: "Paleta não encontrada!" })
+  }
 
-  };
+  const updatedJojo = JojosService.uptadeJojoService(+req.params.id, req.body);
+  res.send(updatedJojo);
+};
 
-const deleteJojo = (req,res) => {
+const deleteJojo = (req, res) => {
+  JojosService.deleteJojoService(req.params.id);
 
-
-    JojosService.deleteJojoService(req.params.id)
-
-    res.send("Personagem deletado com sucesso")
-
+  res.send('Personagem deletado com sucesso');
 };
 
 module.exports = {
-    findJojo,
-    findJojoById,
-    addJojo,
-    deleteJojo,
-    updateJojosController
+  findJojo,
+  findJojoById,
+  addJojo,
+  deleteJojo,
+  updateJojosController,
 };
