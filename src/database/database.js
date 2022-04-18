@@ -12,3 +12,5 @@ function connectToDatabase() {
       return console.log(`Erro na conexao com o banco: ${err}`);
     });
 }
+
+module.exports = connectToDatabase;
