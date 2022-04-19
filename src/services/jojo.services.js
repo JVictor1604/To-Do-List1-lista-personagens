@@ -17,7 +17,7 @@ const addJojoService = (personagem) => {
 
 const deleteJojoService = (id) => {
 
-    return personagens.splice(personagens.find((personagem) => personagem.id == id),1)
+    return personagens.splice(personagens.findIndex((personagem) => personagem.id == id),1)
 
 };
 
